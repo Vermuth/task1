@@ -1,10 +1,11 @@
 class Task
+		#инициализация
 	def initialize(chislo, round)
 		@chislo = chislo
 		@round = round
 		@array = []
 	end
-
+		#расчёт
 	def calc
 		@array << @chislo
 		total, uniq, kol = [], 1, 0
@@ -25,5 +26,7 @@ class Task
 	end
 end
 
+#1ое число с какого значения начинать
+#2е число, до какого раундаы продолжить
 task1 = Task.new(1, 10)
 task1.calc
