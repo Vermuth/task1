@@ -11,9 +11,10 @@ module Enumerable
     cluster
   end
 end
+
 def start(number, round)
   total = []
-  1.upto(round) do
+  round.times do
     number.cluster.map{ |x| total <<  x.uniq.unshift(x.size) }
     p number = total.flatten!
     total = []
