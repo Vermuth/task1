@@ -2,22 +2,30 @@ module Enumerable
   def cluster
     cluster = []
     each do |element|
-      if cluster.last && cluster.last.last == element
-       cluster.last << element
-      else
-       cluster << [element]
+      cluster.last && cluster.last.last == element ? cluster.last << element : cluster << [element]
       end
-    end
     cluster
   end
 end
 
-def start(number, round)
-  round.times do
-    total = []
-    number.cluster.map{ |x| total <<  x.uniq.unshift(x.size) }
-    p number = total.flatten!
+class Sequence 
+  include Enumerable
+  
+  def initialize(arg)
+    @arg = arg
   end
+
+  def to_s
+    @arg.to_s
+  end
+
+  def next
+    total = []
+    @arg = @arg.to_s.split('')
+    @arg.cluster.map{ |x| total <<  x.uniq.unshift(x.size) }
+    @arg = total.flatten!.join.to_i
+    self
+  end
+
 end
 
-start([1], 10)
